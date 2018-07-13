@@ -27,6 +27,16 @@
  * 
  * The card class contains a value "type", and methods for each of these unique card types.
  */
+const cardTypes = ['attack', 'beard_cat', 'watermelon_cat', 'taco_cat', 'rainbow_cat',
+'defuse', 'EXPLODING_KITTEN', 'favor', 'nope', 'skip', 'shuffle']
 
- 
+ class Card {
+     constructor(type) {
+         this.type = type
+     }
+ }
+
+ module.exports = {
+     cardTypes, Card
+ }
 

@@ -9,6 +9,8 @@
     -has play method
 
 */
+import {cardTypes, Card} from './cards.js'
+import {Player} from './players.js'
 
 class CurrGame { 
     constructor(players, deck) {

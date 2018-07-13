@@ -172,5 +172,6 @@ class Player {
       }
       return deck
     }
-
 }
+
+module.exports = Player;
