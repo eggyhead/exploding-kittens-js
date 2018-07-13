@@ -4,7 +4,7 @@
 -draw method which takes in a deck (the draw pile) and outputs the first card  
 -respond method which takes in an attack and prompts the user to choose a response 
 -count the cards in the deck method
--steal method which takes in another player, the option "view" or "mystery", and the number
+-steal method which takes in another player, the option "view", "mystery", or "name" and the number
 of cards to steal
 -skip method, which moves on to the next player in the turn queue
 -seeTheFuture method which allows me to see the first 3 cards of the deck
@@ -15,6 +15,8 @@ is "explding kittens" or not and if the Player who played the card is the curren
 are met, the player has the option to defuse the card or die. If not, the game prompts the current player in the game queue 
 to respond again. 
 -shuffle the deck method
+-choose card from discard pile
+
 their own hand */
 const inquirer = require('inquirer')
 /*types of questions: 
@@ -125,7 +127,7 @@ class Player {
               this.hand = this.hand.concat([cardOptions])
               player.hand = player.hand.filter(card => card !== cardOptions)
             })
-        } else { //the code below is NOT correct-- simply copy/paste from above. 
+        } else if (option == "mystery") { //the code below is NOT correct-- simply copy/paste from above. 
           var cardOptions = [{
             type: 'list',
             name: 'cards',
@@ -139,6 +141,16 @@ class Player {
           this.hand = this.hand.concat([cardOptions])
           player.hand = player.hand.filter(card => card !== cardOptions)
         })
+      } else {
+        var cardOptions = [{
+          type: 'input',
+          name: 'steal_card',
+          message: 'Which card would you like to name?'
+    }]
+      inquirer.prompt(cardOptions).then(answer => {
+        this.hand = this.hand.concat([cardOptions])
+        player.hand = player.hand.filter(card => card !== cardOptions)
+      })
       }
     }
     skip(turnQueue) {
@@ -171,6 +183,21 @@ class Player {
         deck[j] = temp
       }
       return deck
+    }
+    chooseFromDiscard(discardPile) {
+      var cardOptions = [{
+        type: 'list',
+        name: 'discard_choice',
+        message: 'Which card would you like to take?',
+        choices: [discardPile],
+        filter: function(val) {
+          return val.toLowerCase();
+        }
+  }]
+  inquirer.prompt(cardOptions).then(answer => {
+    this.hand = this.hand.concat([answer])
+    game.discardPile = game.discardPile.filter(card => card.type !== answer.type)
+  })
     }
 }
 

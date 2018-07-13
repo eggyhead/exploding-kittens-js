@@ -114,8 +114,8 @@ import sinon from 'sinon';
 import {cardTypes, Card} from './cards'
 
 describe('Exploding Kittens Cards', function() {
-    describe('card types', () => {
+    describe('card type property', () => {
 
     })
-    
+
 })
