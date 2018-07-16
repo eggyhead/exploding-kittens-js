@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "mocha ./cardsTest.js --watch --require babel-core/register"
+    "test": "mocha ./cardsTest.js ./playersTest.js --watch --require babel-core/register"
   },
   "repository": {
     "type": "git",

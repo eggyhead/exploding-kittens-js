@@ -89,7 +89,7 @@ class Player {
     constructor(cards, playerId, playerNickname) {
         this.hand = cards
         this.playerId = playerId
-        this.playerNickname = playerNickname || null
+        this.nickname = playerNickname || null
     }
     discard(card, discardPile) {
         [card].concat(discardPile)
@@ -201,4 +201,4 @@ class Player {
     }
 }
 
-module.exports = Player;
+module.exports = {Player};
