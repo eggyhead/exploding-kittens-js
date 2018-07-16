@@ -32,37 +32,39 @@
 const cardTypes = ['attack', 'beard_cat', 'watermelon_cat', 'taco_cat', 'rainbow_cat',
 'defuse', 'EXPLODING_KITTEN', 'favor', 'nope', 'skip', 'shuffle', 'see_the_future']
 
-function useNumToCreateNew(n, classObj, props) {
-    for (let i = 0; i < n; i++) {
-        return new classObj(...props)
+class Card {
+    constructor(type) {
+        this.type = type
     }
 }
 
-function createCompleteDeck(cardTypes) {
-    switch (type) {
-        case 'attack':
-          
-          break;
-        case 'Mangoes':
-        case 'Papayas':
-          console.log('Mangoes and papayas are $2.79 a pound.');
-          // expected output: "Mangoes and papayas are $2.79 a pound."
-          break;
-        default:
-          console.log('Sorry, we are out of ' + expr + '.');
-      }
+function useNumToCreateNew(n, classObj, resultArr, props) { //takes in # of obj to create, type of obj, and a "props" array
+    for (let i = 0; i < n; i++) {
+        resultArr.push(new classObj(...props)) //assigns the values passed in to the properties of the class
+    }
+    return resultArr;
 }
 
- class Card {
-     constructor(type, n) {
-         this.type = type
-         this.numInDeck = n
-     }
- }
+function createCompleteDeck(types) {
+    let resultDeck = [];
+    types.forEach(type => {
+        switch (type) {
+            case 'defuse':
+            useNumToCreateNew(6, Card, resultDeck, [type])
+            break;
+            case 'nope' || 'see_the_future':
+            useNumToCreateNew(5, Card, resultDeck, [type])
+                break;
+            default:
+            useNumToCreateNew(4, Card, resultDeck, [type])        
+          }
+    }) 
+    return resultDeck;   
+}
 
-console.log(useNumToCreateNew(3, Card, ['attack', 4]))
+const deck = createCompleteDeck(cardTypes)
 
- module.exports = {
-     cardTypes, Card
+module.exports = {
+     cardTypes, Card, deck
  }
 

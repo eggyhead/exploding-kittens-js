@@ -110,12 +110,24 @@ describe('▒▒▒ JavaScript tests ▒▒▒', function () {
         // });
 
 import {expect} from 'chai';
-import sinon from 'sinon';
-import {cardTypes, Card} from './cards'
+//import sinon from 'sinon';
+import {cardTypes, Card, deck} from './cards'
 
 describe('Exploding Kittens Cards', function() {
     describe('card type property', () => {
-
+        it('contains a property "type"', () => {
+            const testCard = new Card('test')
+            expect(testCard.type).to.equal('test')
+        })
+        
     })
+describe('testing test', () => {
+    it('outputs "test"', () => {
+        function testingFunc() {
+            return "test"
+        }
+        expect(testingFunc()).to.equal("test")
+    })
+})
 
 })
